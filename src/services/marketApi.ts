@@ -237,8 +237,8 @@ export const marketApi = {
       // Add small random changes to prices to simulate market movements
       return mockStocks.map(stock => {
         const changeDirection = Math.random() > 0.5 ? 1 : -1;
-        const priceChange = changeDirection * (Math.random() * 10).toFixed(2);
-        const newPrice = +(stock.lastPrice + parseFloat(priceChange)).toFixed(2);
+        const priceChange = changeDirection * Math.random() * 10; // Fixed: Removed toFixed here as it returns a string
+        const newPrice = +(stock.lastPrice + priceChange).toFixed(2); // Apply toFixed after the arithmetic and convert back to number
         const newChange = +(newPrice - stock.open).toFixed(2);
         const newChangePercent = +((newChange / stock.open) * 100).toFixed(2);
         
